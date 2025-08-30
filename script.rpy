@@ -1,27 +1,36 @@
-﻿# The script of the game goes in this file.
+﻿# Declare characters used by this game. The color argument colorizes the # name of the character.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
+define c = Character("Cindy", color="#ffe6cc", image="c")
 
+define p = Character("Professor", color="#ffe6cc")
 
-define c = Character("Cindy", color = "#ffe6cc")
+define eco_meter = 0
 
-define p = Character("Professor", color = "#ffe6cc")
+# CINDY Sprite Config
 
-default eco_meter = 0
+# Blinking Sprite using Ren'Py's ATL Feature.
+image side c neutral:
+    "images/side c 1.png"
+    3
+    "images/side c 2.png"
+    0.5
+    repeat
 
 # The game starts here.
 label start:
     scene medina_lacson with fade
+    
+    "Cindy, is a college student in BPSU, she loved sitting at the front of the Medina Lacson building."
+    
+    c neutral "She uses it as her comfort place. It is full of green grass, sunflowers and trees."
 
-    "Cindy is a college student in BPSU, she loved sitting at the front of the Medina Lacson building."
-    "She uses it as her comfort place, it is full of green grass, sunflowers and trees."
     "But recently, the air felt warm, the sun was not gentle as before, the sunflowers had withered."
+    
+    scene become_classroom with dissolve
 
-    scene bacomm_classroom with dissolve
-    "In class, their professor discussed the impact of climate change and how the Earth’s temperature had already increased."
+    "In class, their professor discussed the impact of climate change and how the earth's temperature had already increased."
+    
     "Now she understands why her surroundings is not the same as before, and why the sun is getting hotter day by day."
-
     scene beside_sarigamit with fade
     "As she took a walk she noticed the overflowing trash bin. Wrappers, plastic cups, and used face masks spill onto the grass."
 
