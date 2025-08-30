@@ -16,6 +16,27 @@ image side c neutral:
     0.5
     repeat
 
+image side c curious:
+    "images/side c 3.png"
+    3
+    "images/side c 4.png"
+    0.5
+    repeat
+
+image side c happy:
+    "images/side c 5.png"
+    3
+    "images/side c 6.png"
+    0.5
+    repeat
+
+image side c angry:
+    "images/side c 7.png"
+    3
+    "images/side c 8.png"
+    0.5
+    repeat
+
 # The game starts here.
 label start:
     scene medina_lacson with fade
@@ -44,7 +65,7 @@ label start:
 # Pick up the trash, and throw it to trash bin
 label choice1_path:
     "While picking up the trash from the ground, Cindy smiled."
-    c "A little action can be big someday."
+    c happy "A little action can be big someday."
     $ eco_meter += 5
     jump continuation_1
 
@@ -52,7 +73,7 @@ label choice1_path:
 # Ignore the trash and continue to walk
 label choice2_path:
     "As she walked by, she felt guilty."
-    c "Next time, i'll pick up the trash if I see one."
+    c curious "Next time, i'll pick up the trash if I see one."
     jump continuation_1
 
 
