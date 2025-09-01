@@ -4,7 +4,7 @@ define c = Character("Cindy", color="#ffe6cc", image="c")
 
 define p = Character("Professor", color="#ffe6cc")
 
-define a = Character("Alberto")
+define a = Character("Alberto", image ="a")
 
 define eco_meter = 0
 
@@ -39,6 +39,16 @@ image side c angry:
     0.5
     repeat
 
+# ALBERTO Sprite Config
+
+image a happy:
+    zoom 0.5
+    "images/a 1.png"
+    3
+    "images/a 2.png"
+    0.5
+    repeat
+
 # The game starts here.
 label start:
     scene medina_lacson with fade
@@ -51,17 +61,22 @@ label start:
     
     scene bacomm_classroom with dissolve
 
+    show p serious
+
     p "The Earth's temperature has increased by more than 1°C already. That may sound small, but it’s enough to change ecosystems."
 
     p "Climate change isn’t some faraway issue, it’s affecting us here, now."
     
     "Cindy understood why her favorite spot wasn’t the same as before, and why the sun was harsher every day."
 
+    hide p serious
+
     scene beside_sarigamit with fade
     "As Cindy and Alberto walked, they noticed an overflowing trash bin, the wrappers, plastic cups, and face masks spilling onto the grass."
 
+    show a happy
     a "Bestie, the place is getting worse... Should we do something?"
-
+    
     menu choice_1:
         "Pick up the trash, and throw it to trash bin":
             jump choice1_path
@@ -69,17 +84,28 @@ label start:
         "Ignore the trash and continue to walk":
             jump choice2_path
 
+    
 # Pick up the trash, and throw it to trash bin
 label choice1_path:
+
+    
     "While picking up the trash from the ground, Cindy smiled."
+
     c happy "A little action can be big someday."
+
+    hide a happy
+
     $ eco_meter += 5
     jump continuation_1
 
 
 # Ignore the trash and continue to walk
 label choice2_path:
+
+    hide a happy
+
     "As she walked by, she felt guilty."
+
     c curious "Next time, i'll pick up the trash if I see one."
     jump continuation_1
 
@@ -138,36 +164,6 @@ label professor_answer:
         "I should apply what my professor said.":
             jump apply_yes
 
-# The path for not applying the advice
-label apply_no:
-    c "There's no change if I do that or not, maybe I should just share facts online, it can be helpful too. It's too much for me to do alone."
-
-    "Cindy got home, she decided not to do anything, and just go to sleep."
-
-    c "There are so many people out there who can do that, not just me, so I should rest and save my energy."
-    jump create_website_prompt
-
-# The path for applying the advice
-label apply_yes:
-    $ eco_meter += 10
-    c "I have nothing to lose if I try to follow my professor's advice. Who knows, maybe one day I might influence others too."
-
-    "Cindy got home and she decided to make a change."
-
-    c "Tomorrow I'll bring a reusable tumbler, pick up trash if I can and maybe I should start posting eco-facts on my social media."
-    jump create_website_prompt
-
-# The prompt about creating a website
-label create_website_prompt:
-    c "What if I use my knowledge as a computer science student to create a website? That gives other students an awareness on what the cause of climate change, and what can we do?"
-
-menu apply_advice:
-    c "I think it's too much if I do that.":
-        jump apply_no
-    c "I should apply what my professor said.":
-        jump apply_yes
-
-
 # If Cindy refuses to apply
 label apply_no:
 c "There's no change if I do it or not. Maybe I’ll just share facts online, that’s enough."
@@ -223,11 +219,13 @@ label website_yes:
     "The student council soon organized a Clean and Green Week inspired by their project."
 
 
-scene Medina_lacson with fade
+    scene Medina_lacson with fade
     # CG Suggestion: Students cleaning together, Cindy & Alberto smiling
 
     "They passed by Medina Lacson and saw students cleaning, watering plants, and bringing tumblers."
+
     c "Even though the sunflowers disappeared, hope is growing in their place."
+
     jump end_good
 
 
@@ -235,16 +233,17 @@ scene Medina_lacson with fade
 
 label website_no:
     c "My knowledge isn’t enough… I’ll just leave it to others."
+
     "Before sleeping, Cindy only posted some eco-facts on social media."
 
-scene Medina_lacson with fade
+    scene Medina_lacson with fade
     # CG Suggestion: Empty, faded field with scattered trash
 
     "The next morning, Cindy sat in Medina Lacson again. The grass had faded, trash was scattered, and the sunflowers were gone."
+
     c "Nothing has changed… it only got worse."
 
     jump end_bad
-
 
     # GOOD END
     label end_good:
