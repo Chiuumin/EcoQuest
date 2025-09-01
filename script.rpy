@@ -4,6 +4,8 @@ define c = Character("Cindy", color="#ffe6cc", image="c")
 
 define p = Character("Professor", color="#ffe6cc")
 
+define a = Character("Alberto")
+
 define eco_meter = 0
 
 # CINDY Sprite Config
@@ -47,13 +49,18 @@ label start:
 
     "But recently, the air felt warm, the sun was not gentle as before, the sunflowers had withered."
     
-    scene become_classroom with dissolve
+    scene bacomm_classroom with dissolve
 
-    "In class, their professor discussed the impact of climate change and how the earth's temperature had already increased."
+    p "The Earth's temperature has increased by more than 1°C already. That may sound small, but it’s enough to change ecosystems."
+
+    p "Climate change isn’t some faraway issue, it’s affecting us here, now."
     
-    "Now she understands why her surroundings is not the same as before, and why the sun is getting hotter day by day."
+    "Cindy understood why her favorite spot wasn’t the same as before, and why the sun was harsher every day."
+
     scene beside_sarigamit with fade
-    "As she took a walk she noticed the overflowing trash bin. Wrappers, plastic cups, and used face masks spill onto the grass."
+    "As Cindy and Alberto walked, they noticed an overflowing trash bin, the wrappers, plastic cups, and face masks spilling onto the grass."
+
+    a "Bestie, the place is getting worse... Should we do something?"
 
     menu choice_1:
         "Pick up the trash, and throw it to trash bin":
@@ -81,15 +88,15 @@ label continuation_1:
     scene medina_lacson with fade
     "As she continues to walk, Cindy pauses as she goes past to the once-green field, noticing the faded sunflowers."
     "A sigh slips from her lips."
-    c curious "Hmm? What are the causes of pollution?"
+    c "Hmm? What are the causes of pollution?"
 
     menu causes_of_pollution:
         "I don't know":
-            c neutral "Maybe I'll ask my professor later or I'll search it online."
+            c "Maybe I'll ask my professor later or I'll search it online."
             jump ask_professor
 
         "I think vehicles and the increasing population":
-            c happy "I notice that the smoke from cars contributes to air pollution. And since the population of students is increasing, more food stalls mean more packaging... more waste. Maybe that's the reason why managing the waste is difficult."
+            "I notice that the smoke from cars contributes to air pollution. And since the population of students is increasing, more food stalls mean more packaging... more waste. Maybe that's the reason why managing the waste is difficult."
             jump ask_professor_simple
 
 # The dialogue path for choosing "I don't know"
@@ -120,7 +127,9 @@ label ask_professor_simple:
 label professor_answer:
     p "Good question, Cindy. Start small. Refuse single-use plastics, use reusable containers, conserve energy, and educate others. Climate change isn’t just a big problem—it's a collection of small actions repeated every day."
 
-    "After class, Cindy thought about what decision she would make. She also wondered if she would do what her professor said."
+    p "It may feel small, but when many do it—it changes everything."
+
+    "After class, Cindy reflected on her decision."
 
     menu apply_advice:
         "I think it's too much if I do that.":
@@ -152,60 +161,101 @@ label apply_yes:
 label create_website_prompt:
     c "What if I use my knowledge as a computer science student to create a website? That gives other students an awareness on what the cause of climate change, and what can we do?"
 
-    menu create_website:
-        "Create a website":
-            jump website_yes
+menu apply_advice:
+    c "I think it's too much if I do that.":
+        jump apply_no
+    c "I should apply what my professor said.":
+        jump apply_yes
 
-        "I should just sleep, it's impossible.":
-            jump website_no
 
-# The path for creating a website
+# If Cindy refuses to apply
+label apply_no:
+c "There's no change if I do it or not. Maybe I’ll just share facts online, that’s enough."
+"Cindy got home and decided not to act, telling herself others would take care of it."
+
+jump create_website_prompt
+
+
+# If Cindy applies the advice
+label apply_yes:
+
+$ eco_meter += 10
+
+c "I’ll try. Tomorrow, I’ll bring my reusable tumbler, pick up trash when I can, and post eco-facts on social media."
+
+
+# Reference to ENSO platform (realistic touch!)
+
+c "Hey, maybe I can also use ENSO’s 20% discount when I bring my own tumbler. Saves money *and* the planet."
+
+
+jump create_website_prompt
+
+# Cindy considers creating a website
+label create_website_prompt:
+
+c "What if I use my Computer Science skills to create a website that spreads awareness?"
+a "That’s a great idea! We can include eco-facts, equality messages, and even link it to ENSO’s programs."
+
+
+menu create_website:
+    "Create a website":
+        jump website_yes
+
+    "I should just sleep, it’s impossible.":
+        jump website_no
+
+
+# Website path YES (positive outcome)
 label website_yes:
+
     $ eco_meter += 20
-    c "Yes, I'll create one. Creating a website can help them to be aware."
+    # CG Suggestion: Cindy coding at her laptop with Alberto beside her
 
-    "She created a website and before she went to sleep, she posted eco-facts on her social media."
+    c "Yes, I'll create one. This way, more people can learn and take action."
 
-    "Tomorrow morning she presented it to her professor who said..."
+    "They stayed up late, building a colorful site with eco-tips and slogans like 'Protect the Earth, Protect Each Other.'"
 
-    p "This was wonderful! Try to talk to the student council about this 'Clean and Green' website you created."
+    "The next day, they presented it to their professor."
 
-    "After she talks to the student council she walks with a smile and feels proud of herself."
+    p "This is wonderful! Share this with the student council—they’ll love it."
 
-    "She passed by again to Medina Lacson and saw another student picking up plastic."
+    "The student council soon organized a Clean and Green Week inspired by their project."
 
-    c "Even though the sunflowers disappear, at least there are students who start to take care of the surroundings."
 
+scene Medina_lacson with fade
+    # CG Suggestion: Students cleaning together, Cindy & Alberto smiling
+
+    "They passed by Medina Lacson and saw students cleaning, watering plants, and bringing tumblers."
+    c "Even though the sunflowers disappeared, hope is growing in their place."
     jump end_good
 
-# The path for not creating a website
+
+# Website path NO (negative outcome)
+
 label website_no:
-    c "My knowledge is not enough, and besides I'm not the only one who cares about the environment, I'll leave everything to them, they can do it."
+    c "My knowledge isn’t enough… I’ll just leave it to others."
+    "Before sleeping, Cindy only posted some eco-facts on social media."
 
-    "She also said..."
+scene Medina_lacson with fade
+    # CG Suggestion: Empty, faded field with scattered trash
 
-    c "There are so many people out there who can do that, not just me, so I should rest and save my energy."
-
-    "Before she went to sleep, she just posted eco-facts on her social media account thinking it could be helpful."
-
-    "Tomorrow morning she decided to go to Medina Lacson and sit there while she's looking around and she notices the trash and continuous fading color of the grass."
-
-    c "There is still trash, the color of the grass continues to fade and...the sunflowers are gone."
+    "The next morning, Cindy sat in Medina Lacson again. The grass had faded, trash was scattered, and the sunflowers were gone."
+    c "Nothing has changed… it only got worse."
 
     jump end_bad
 
-# Good ending
-label end_good:
-    if eco_meter >= 30:
-        c "One small step... creates ripples."
-        "GOOD END: Your actions created a lasting change. Your final eco-meter score is: [eco_meter]."
-    else:
-        "NEUTRAL END: You made an effort, but the change was small. Your final eco-meter score is: [eco_meter]."
+
+    # GOOD END
+    label end_good:
+    c "GOOD END: Small steps, big ripples. You helped inspire change!"
+    "Your final eco-meter score is: [eco_meter]"
     return
 
-# Bad ending
+# BAD END
 label end_bad:
-    "BAD END: Actions matter more than words."
-    "Your final eco-meter score is: [eco_meter]."
+    "BAD END: Words without action change nothing."
+    "Your final eco-meter score is: [eco_meter]"
     return
+
 
