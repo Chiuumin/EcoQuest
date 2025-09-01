@@ -81,15 +81,15 @@ label continuation_1:
     scene medina_lacson with fade
     "As she continues to walk, Cindy pauses as she goes past to the once-green field, noticing the faded sunflowers."
     "A sigh slips from her lips."
-    c "Hmm? What are the causes of pollution?"
+    c curious "Hmm? What are the causes of pollution?"
 
     menu causes_of_pollution:
         "I don't know":
-            c "Maybe I'll ask my professor later or I'll search it online."
+            c neutral "Maybe I'll ask my professor later or I'll search it online."
             jump ask_professor
 
         "I think vehicles and the increasing population":
-            "I notice that the smoke from cars contributes to air pollution. And since the population of students is increasing, more food stalls mean more packaging... more waste. Maybe that's the reason why managing the waste is difficult."
+            c happy "I notice that the smoke from cars contributes to air pollution. And since the population of students is increasing, more food stalls mean more packaging... more waste. Maybe that's the reason why managing the waste is difficult."
             jump ask_professor_simple
 
 # The dialogue path for choosing "I don't know"
@@ -208,3 +208,4 @@ label end_bad:
     "BAD END: Actions matter more than words."
     "Your final eco-meter score is: [eco_meter]."
     return
+
