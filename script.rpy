@@ -6,6 +6,8 @@ define p = Character("Professor", color="#ffe6cc")
 
 define a = Character("Alberto", image ="a")
 
+define k = Character("Karen", image="k")
+
 define eco_meter = 0
 
 # CINDY Sprite Config
@@ -88,7 +90,6 @@ label start:
 # Pick up the trash, and throw it to trash bin
 label choice1_path:
 
-    
     "While picking up the trash from the ground, Cindy smiled."
 
     c happy "A little action can be big someday."
@@ -256,5 +257,6 @@ label end_bad:
     "BAD END: Words without action change nothing."
     "Your final eco-meter score is: [eco_meter]"
     return
+
 
 
