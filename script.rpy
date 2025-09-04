@@ -41,6 +41,17 @@ image side c angry:
     0.5
     repeat
 
+#PROFESSOR Sprite Config
+
+image p slight smile:
+    zoom 0.5
+    "images/p 1.png"
+    3
+    "images/p 2.png"
+    0.5
+    repeat
+    
+
 # ALBERTO Sprite Config
 
 image a happy:
@@ -75,20 +86,131 @@ image comfort = "images/Comfort_space.jpg"
 # The game starts here.
 label start:
     scene medina_lacson with fade
+
+    play music "audio/gentle warmth.mp3" loop fadein 2.5
     
-    "Sina Cindy at Alberto ay mga college students sa BPSU. Madalas silang umupo sa harap ng Medina Lacson Building, na nagsilbing kanilang pahingahan"
+    "Sina Cindy at Alberto ay mga college students sa BPSU. Madalas silang umupo sa harap ng Medina Lacson Building, na nagsilbing kanilang pahingahan."
     
     scene comfort
 
-    "Palagi silang tumatambay dito upang magpahinga mula sa mga mabibigat na talakayin sa eskuwela"
+    "Palagi silang tumatambay dito upang magpahinga mula sa mga mabibigat na talakayin sa eskuwela."
 
     scene sunflower
 
-    "Nangingibabaw sa lugar na ito ang luntiang damo na parang masarap higaan, mga namumukadkad na sunflower na masarap pitasin, at naglalakihang puno sa paligid na masarap silungan sa tuwing mainit o umuulan"
+    "Nangingibabaw sa lugar na ito ang luntiang damo na parang masarap higaan, mga namumukadkad na sunflower na masarap pitasin, at naglalakihang puno sa paligid na masarap silungan sa tuwing mainit o umuulan."
 
     "Sa madalas nilang pagtambay sa harap ng Medina Lacson, higit pang tumibay ang pagkakaibigan nina Cindy at Alberto."
 
     "Doon din natuklasan ni Cindy na kabilang si Alberto sa LGBTQ+, bagay na mas lalo niyang hinangaan."
+
+    "Simula noon, mas naging makulay ang kanilang samahan: lagi na silang nagtatawanan, sabay na nag-aaral, at walang sawang nagbabahagi ng mga pangarap nila sa kanilang buhay."
+
+    "Ngunit unti-unti nilang napapansin ang pagbabago sa lugar."
+
+    "Ramdam nila na umiinit ang simoy ng hangin, hindi na kasing-sariwa ng dati ang nalalanghap nilang hangin, at ang dating malulusog na mirasol ay nagsimulang malanta."
+
+    c neutral "Ang init na ng panahon, hindi na talaga ito tulad ng dati…"
+
+    jump classroom_scene
+
+label classroom_scene:
+    scene bacomm with fade
+
+    show p slight smile
+    p "Okay class, ngayong araw ay tatalakayin natin ang tungkol sa klima at ang epekto ng climate change."
+
+    p "Una, ang pangunahing sanhi ng pag-init ng mundo o global warming ay ang patuloy na pagdami ng greenhouse gases gaya ng Carbon Dioxide (CO₂), Methane (CH₄), at Nitrous Oxide (N₂O)."
+
+    p "Karaniwan itong nagmumula sa pagsunog ng fossil fuels katulad ng langis, uling, at gas—na ginagamit sa pabrika, sa sasakyan, at sa mga planta ng kuryente."
+
+    p "Dahil dito, naiipon ang init sa ating atmosphere at unti-unting tumataas ang temperatura ng mundo."
+
+    p "Cindy."
+
+    menu question:
+        p "Ano ang pangunahing sanhi ng pag-init sa mundo?"
+        "Pagdami ng Greenhouse gases.":
+            $ eco_meter += 1
+            p "Tama! Greenhouse gases mula sa fossil fuels ang dahilan."
+        "Pagdami ng halaman":
+            $ eco_meter -= 1
+            p "Mali, ang mga halaman ay nakakatulong pa nga sa pag-absorb ng carbon."
+        "Pag-inom ng softdrinks":
+            $ eco_meter -= 1
+            p "Mali. Walang kaugnayan ang softdrinks dito."
+
+    p "Ikalawa, hindi natin maikakaila na malaking bahagi rin ng problema ay dahil sa ating pagiging iresponsableng tao."
+
+    p "Ang maling pagtatapon ng basura, lalo na ng plastik, ay nagdudulot ng polusyon sa lupa at karagatan. Tandaan, ang plastik ay maaaring tumagal ng daan-daang taon bago mabulok, at kapag ito’y sinunog, nagiging lason pa ito sa hangin."
+
+    menu:
+        p "Ano ang epekto ng plastik sa kalikasan?"
+        "A. Tumutulong maglinis ng kapaligiran":
+            $ eco_meter -= 1
+            p "Mali. Ang plastik ay nakakapagdulot ng polusyon."
+        "B. Tumagal ng daan-daang taon bago mabulok at nakakalason kapag sinunog":
+            $ eco_meter += 1
+            p "Tama! Isa ito sa mga pinaka-seryosong problema sa kalikasan."
+        "C. Nakakaganda ng tanawin":
+            $ eco_meter -= 1
+            p "Mali. Ang plastik ay nakakasira ng tanawin at kapaligiran."
+
+    p "Ang usok mula sa mga pabrika at tambutso ng sasakyan ay nagdaragdag ng carbon emissions na lalo pang nagpapainit sa ating mundo."
+
+    menu:
+        p "Saan karaniwang nanggagaling ang carbon emissions?"
+        "A. Sa mga halaman at puno":
+            $ eco_meter -= 1
+            p "Mali, nakakatulong ang mga halaman sa paglinis ng hangin."
+        "B. Sa pabrika, sasakyan, at pagsunog ng fossil fuels":
+            $ eco_meter += 1
+            p "Tama! Iyan ang pangunahing pinagmumulan ng emissions."
+        "C. Sa pag-inom ng tubig":
+            $ eco_meter -= 1
+            p "Mali. Walang kaugnayan dito ang pag-inom ng tubig."
+
+    p "Ang mga ganitong gawain ay hindi lamang nakasisira sa kalikasan, kundi nagdudulot din ng panganib sa ating kalusugan at pang-araw-araw na pamumuhay."
+
+    p "Alam nyo ba na malaki ang epekto nito sa tao, lalo na sa ating kalusugan?"
+
+    menu:
+        p "Ano ang epekto ng maruming hangin at tubig?"
+        "A. Nagdudulot ng hika, ubo, diarrhea, cholera":
+            $ eco_meter += 1
+            p "Tama! Nakakasama ito sa kalusugan ng tao."
+        "B. Nagiging mas masarap ang pagkain":
+            $ eco_meter -= 1
+            p "Mali. Wala itong kinalaman sa lasa ng pagkain."
+        "C. Walang epekto sa tao":
+            $ eco_meter -= 1
+            p "Mali. Tayo ang unang naaapektuhan."
+
+    p "Sa ating pangkabuhayan naman—dahil sa mas matinding init at pagbaha, naaapektuhan ang ani ng mga magsasaka at huli ng mga mangingisda."
+
+    menu:
+        p "Ano ang epekto ng climate change sa kabuhayan?"
+        "A. Naaapektuhan ang ani at huli ng isda":
+            $ eco_meter += 1
+            p "Tama! Kaya nagiging mahirap ang pagkakaroon ng sapat na pagkain."
+        "B. Mas dumarami ang pagkain":
+            $ eco_meter -= 1
+            p "Mali. Mas kumokonti ang resources dahil sa init at baha."
+        "C. Walang epekto sa ekonomiya":
+            $ eco_meter -= 1
+            p "Mali. Malaki ang epekto sa ekonomiya ng bansa."
+
+    p "Kaya class, always remember na ang climate change ay hindi lang isyu ng kalikasan, kundi isyu rin ng tao at ng ating kinabukasan."
+
+    p "Bilang kabataan at mamamayan, tungkulin nating baguhin ang ating gawi.. Pwede nating bawasan ang basura, magtipid sa enerhiya, at suportahan ang mga organisasyong pangkalikasan."
+
+    p "Kung hindi tayo kikilos ngayon, maipapamana natin ang problema sa susunod na henerasyon."
+
+    "Ngayon ay mas naiintindihan na ni Cindy kung bakit iba na ang kanyang paligid at kung bakit tila ba mas umiinit ang panahon nitong mga nakaraan."
+
+    return
+
+
+
 
 
 
