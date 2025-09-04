@@ -10,6 +10,13 @@ define k = Character("Karen", image = "k", color="#c5e127")
 
 define eco_meter = 0
 
+# NVL characters are used for the phone texting
+define c_nvl = Character("Cindy", kind=nvl, callback=Phone_SendSound)
+define a_nvl = Character("Alberto", kind=nvl, callback=Phone_ReceiveSound)
+
+define config.adv_nvl_transition = None
+define config.nvl_adv_transition = Dissolve(0.3)
+
 # CINDY Sprite Config
 
 # Blinking Sprite using Ren'Py's ATL Feature.
@@ -50,6 +57,10 @@ image p slight smile:
     "images/p 2.png"
     0.5
     repeat
+
+image p slight smile2:
+    zoom 0.5
+    "images/ p 3.png"
     
 
 # ALBERTO Sprite Config
@@ -73,15 +84,17 @@ image a neutral:
 
 #BG CONFIG
 image sunflower:
-    "images/sunflower1.jpg"
-    1.5
-    "images/sunflower2.png"
-    1.5
+    "images/Sunflower1.png"
+    1.0
+    "images/Sunflower2.png"
+    1.0
     repeat
 
 image medina_lacson = "images/Medina_lacson.jpg"
 image comfort = "images/Comfort_space.jpg"
-
+image bacomm = "images/bacomm.jpg"
+image library = "images/Bpsu_lib.jpg"
+image store = "images/Store.jpg"
 
 # The game starts here.
 label start:
@@ -101,15 +114,23 @@ label start:
 
     "Sa madalas nilang pagtambay sa harap ng Medina Lacson, higit pang tumibay ang pagkakaibigan nina Cindy at Alberto."
 
+    scene comfort with fade
+
+    show a happy
+
     "Doon din natuklasan ni Cindy na kabilang si Alberto sa LGBTQ+, bagay na mas lalo niyang hinangaan."
 
     "Simula noon, mas naging makulay ang kanilang samahan: lagi na silang nagtatawanan, sabay na nag-aaral, at walang sawang nagbabahagi ng mga pangarap nila sa kanilang buhay."
+
+    show a neutral
 
     "Ngunit unti-unti nilang napapansin ang pagbabago sa lugar."
 
     "Ramdam nila na umiinit ang simoy ng hangin, hindi na kasing-sariwa ng dati ang nalalanghap nilang hangin, at ang dating malulusog na mirasol ay nagsimulang malanta."
 
     c neutral "Ang init na ng panahon, hindi na talaga ito tulad ng dati…"
+
+    hide a neutral
 
     jump classroom_scene
 
@@ -145,13 +166,13 @@ label classroom_scene:
 
     menu:
         p "Ano ang epekto ng plastik sa kalikasan?"
-        "A. Tumutulong maglinis ng kapaligiran":
+        "Tumutulong maglinis ng kapaligiran":
             $ eco_meter -= 1
             p "Mali. Ang plastik ay nakakapagdulot ng polusyon."
-        "B. Tumagal ng daan-daang taon bago mabulok at nakakalason kapag sinunog":
+        "Tumagal ng daan-daang taon bago mabulok at nakakalason kapag sinunog":
             $ eco_meter += 1
             p "Tama! Isa ito sa mga pinaka-seryosong problema sa kalikasan."
-        "C. Nakakaganda ng tanawin":
+        "Nakakaganda ng tanawin":
             $ eco_meter -= 1
             p "Mali. Ang plastik ay nakakasira ng tanawin at kapaligiran."
 
@@ -159,13 +180,13 @@ label classroom_scene:
 
     menu:
         p "Saan karaniwang nanggagaling ang carbon emissions?"
-        "A. Sa mga halaman at puno":
+        "Sa mga halaman at puno":
             $ eco_meter -= 1
             p "Mali, nakakatulong ang mga halaman sa paglinis ng hangin."
-        "B. Sa pabrika, sasakyan, at pagsunog ng fossil fuels":
+        "Sa pabrika, sasakyan, at pagsunog ng fossil fuels":
             $ eco_meter += 1
             p "Tama! Iyan ang pangunahing pinagmumulan ng emissions."
-        "C. Sa pag-inom ng tubig":
+        "Sa pag-inom ng tubig":
             $ eco_meter -= 1
             p "Mali. Walang kaugnayan dito ang pag-inom ng tubig."
 
@@ -175,13 +196,13 @@ label classroom_scene:
 
     menu:
         p "Ano ang epekto ng maruming hangin at tubig?"
-        "A. Nagdudulot ng hika, ubo, diarrhea, cholera":
+        "Nagdudulot ng hika, ubo, diarrhea, cholera":
             $ eco_meter += 1
             p "Tama! Nakakasama ito sa kalusugan ng tao."
-        "B. Nagiging mas masarap ang pagkain":
+        "Nagiging mas masarap ang pagkain":
             $ eco_meter -= 1
             p "Mali. Wala itong kinalaman sa lasa ng pagkain."
-        "C. Walang epekto sa tao":
+        "Walang epekto sa tao":
             $ eco_meter -= 1
             p "Mali. Tayo ang unang naaapektuhan."
 
@@ -189,13 +210,13 @@ label classroom_scene:
 
     menu:
         p "Ano ang epekto ng climate change sa kabuhayan?"
-        "A. Naaapektuhan ang ani at huli ng isda":
+        "Naaapektuhan ang ani at huli ng isda":
             $ eco_meter += 1
             p "Tama! Kaya nagiging mahirap ang pagkakaroon ng sapat na pagkain."
-        "B. Mas dumarami ang pagkain":
+        "Mas dumarami ang pagkain":
             $ eco_meter -= 1
             p "Mali. Mas kumokonti ang resources dahil sa init at baha."
-        "C. Walang epekto sa ekonomiya":
+        "Walang epekto sa ekonomiya":
             $ eco_meter -= 1
             p "Mali. Malaki ang epekto sa ekonomiya ng bansa."
 
@@ -207,6 +228,105 @@ label classroom_scene:
 
     "Ngayon ay mas naiintindihan na ni Cindy kung bakit iba na ang kanyang paligid at kung bakit tila ba mas umiinit ang panahon nitong mga nakaraan."
 
+    jump medina_scene
+
+label medina_scene:
+    scene medina_lacson with fade
+
+    "Pagkatapos ng klase, dumaan sina Cindy at Alberto sa tapat ng Medina, napansin nila ang umaapaw na basurahan"
+
+    c neutral "Parang wala nang pakialam ang ibang estudyante sa ating kapaligiran—ang daming basurang nagkalat"
+
+    menu:
+        "Ano ang gagawin nila?"
+        "Pulutin ang mga basura":
+            $ eco_meter += 1
+            a happy "Bestie, walang magbabago kung tititigan lang natin 'to."
+            
+            a "Maliit man ang aksyon na ito, pero kung mas marami tayong matutulungan, mas magiging malinis ulit ang lugar."
+            
+            "Nagpatuloy silang maglinis..."
+            
+            #CALL DRAG AND DROP MINI-GAME
+            
+            a neutral "Alam mo, parang ganito rin ang pagtingin ng iba patungkol sa gender..."
+
+            a "Na kapag babae ka or bahagi ka ng LGBTQ+ community, wala kang magagawa, dahil para sa kanila lalaki parin ang mas maraming magagawa"
+
+            a "Pero tignan mo tayo ngayon—pinapakita natin na kahit sino, puwedeng magbigay ng ambag sa komunidad."
+
+            c happy "Tama ka, ang ganda ng punto mo."
+
+            jump library_scene
+
+        "Iwasan ang basurahan":
+            $ eco_meter -= 1
+            a angry "Grabe, nakakadiri naman tignan yung basurahan na yan."
+
+            c neutral "Sa ibang araw nalang tayo mag pulot kapag may gamit na tayo."
+
+            "Hindi nila pinansin ang basurahan kaya lalo pang dumami ang kalat sa paligid."
+
+            jump library_scene
+        
+# -------------------------
+# LIBRARY SCENE (Website path)
+# -------------------------
+label library_scene:
+
+    scene library with fade
+    "Sa vacant time nila, naisipan nina Cindy at Alberto na gumawa ng Facebook page muna habang pinaplano ang mas malaking website"
+    
+    "Dinisenyo ni Cindy ang layout at nag-upload ng content tungkol sa pagbabawas ng basura."
+    
+    "Nagdagdag naman si Alberto ng makukulay na graphics at mga quote"
+
+    jump karen_conflict
+
+# -------------------------
+# KAREN CONFLICT
+# -------------------------
+label karen_conflict:
+
+    scene bacomm with fade
+    "Kinabukasan, nakita ni Karen ang kanilang page, kaya pinaringgan nya ang dalawa."
+
+    k "Ang taas talaga ng pangarap ng dalawang 'to. Kunwari pang naglilinis, mga pasikat, bida-bida."
+
+    "May ilan na natawa sa comment ni Karen ngunit may ilan ding naging intresado sa page."
+
+    menu:
+        "Ano ang gagawin nila?"
+
+        "Patulan si Karen":
+            $ eco_meter -= 1
+
+            c "Ano bang problema mo sa ginagawa namin, ha?"
+
+            a "Kung wala kanbg maaambag dito, wag mong sirain ang ginagawa namin."
+
+            "Nag-walkout si Karen nang padabog, at nagkalat sa campus ang kanilang away."
+            jump house_scene
+
+        "Hayaan na lang at mag-focus":
+            $eco_meter -= 1
+
+            a happy "Hayaan mo na, beh. Dadami rin tayo at may pagbabago ring mangyayari."
+
+            c "Oo nga. Hindi dapat tayo paapekto sa sinabi nya, at lalong hindi tayo pwede panghinaan ng loob"
+            jump house_scene
+
+label house_scene:
+    show store with fade  
+    
+    "Kinagabihan, nag-text si Cindy kay Alberto."
+     
+    nvl_narrator "16:28"
+    c_nvl "Bes, dahil CS students tayo, puwede tayong gumawa ng website gamit ang coding skills natin."   
+
+    a_nvl "Sige! Ako bahala sa posters at slogans." 
+    
+    
     return
 
 
