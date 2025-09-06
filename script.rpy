@@ -326,8 +326,180 @@ label house_scene:
 
     a_nvl "Sige! Ako bahala sa posters at slogans." 
     
+    menu:
+        "Coding Challenge!":
+            "Ipagpatuloy kahit mahirap":
+                $ eco_meter += 2
+                "Nagpatuloy sila kahit maraming errors ang lumalabas, hangga't sa natapos din ang website."
+                jump faculty_scene
+            "Sumuko at stick na lang sa FB":
+                $ eco_meter -= 2
+                c "andaming error ayuko na!"
+                a "di ganon kalawak ang knowledge natin sa coding, okay na siguro ang fb page natin."
+                "Nadismaya si Cindy at nag-agree na mag-stick na lang sila sa FB page"
+                jump faculty_scene
+
+#-----------------------
+#FACULTY SCENE
+#-----------------------
+
+label faculty_scene:
+    scene bacomm with fade
+    "Pagkaraan ng ilang linggo, inilusad nila ang website at pinakita ito sa kanilang propesor."
+
+    show p slight smile2
+    "Uy, ang ganda nito ah! Hindi lang informative, malinaw pa yung pagkaka-explain ninyo."
+
+    c happy "Salamat po, Sir! Ang saya kasi parang worth it lahat ng puyat at kape."
+
+    show a happy
+    a "Oo nga po, Sir. Akala po namin ay may kulang pa, buti na lang pasado pala sa inyo."
     
+    p "Naku, pasado lang? Hindi lang pasado, impressive! Dahil dito, bibigyan ko pa kayo ng extra grade para sa midterms."
+    
+    c happy "Talaga po, Sir? Yehey! Thank you po!"
+
+    show p slight smile
+    p "Sige, ipakita niyo yan sa ENSO, ha? Para matulungan kayo na ipromote toh sa public at ma-inspire din yung ibang estudyante sa ginawa niyo."
+
+    c neutral "Opo, sir. gagawin po namin best namin."
+
+    show a happy
+    a "Told you, worth it 'toh. Salamat po, prof, malaking tulong 'yung tiwala niyo."    
+   
+    p "Good job. Ituloy niyo yan, I can see the potential."
+
+    jump student_council
+
+
+# -------------------------
+# STUDENT COUNCIL (Q&A)
+# -------------------------
+label student_council:
+
+    scene Council with fade
+
+    k smirk "Oh, Cindy, Alberto! Ano namang ginagawa niyo rito?" 
+    c curious "Nandito kami para mag-present sa student council ng website na ginawa namin." (Confident)
+
+    menu:
+        k "Pero ano naman ang magagawa ng mga simpleng tao para makatulong?" 
+        "A. Tamang pagtatapon ng basura at pagtitipid sa resources":
+            $ eco_meter += 1
+            a "Tama! Kahit maliit na bagay malaking tulong na ‘yon."
+        "B. Wala silang magagawa":
+            $ eco_meter -= 1
+            a "Mali, lahat tayo kaya gumawa ng pagbabago kahit maliit lang ang role natin sa mundo."
+
+        "C. Kumain ng maraming fastfood":
+            $ eco_meter -= 1
+            a "Hindi ‘yan nakakatulong sa environment."
+
+    menu:
+        k "Kung gano’n, ano ba ang epekto nito sa atin mismo?"
+        "A. Mas madalas ang pagbaha, maruming hangin at tubig":
+            $ eco_meter += 1
+            a "Tama! Direkta tayong apektado ng climate change."
+        "B. Mas masarap ang pagkain":
+            $ eco_meter -= 1
+            a "Mali. Ang epekto ay kalamidad at problema sa kalusugan."
+        "C. Walang epekto sa tao":
+            $ eco_meter -= 1
+            a "Mali. Tayo ang unang apektado ng climate change."
+
+    k "Alam niyo… nahihiya ako sa mga sinabi ko dati, gusto ko humingi ng sorry. At bilang pambawi nais ko ring tumulong sainyo."
+
+    c happy "Walang problema, Karen. Ang mahalaga, ngayon nagbago yung pananaw mo. Mas magiging malakas tayo kung sama-sama." 
+
+    a happy "Salamat, Karen. Ibig sabihin, hindi lang ito advocacy namin ni Alberto kundi para ito sa lahat." 
+
+    jump advocacyEvent_scene
+
+
+# -------------------------
+# ADVOCACY EVENT
+# -------------------------
+Label: advocacyEvent_scene
+???
+
+Karen (masaya, habang tumutulong sa isang event):
+“Ang saya pala ng ganito. Totoo nga, lahat tayo may parte sa pagbabago.”
+
+Cindy (nakatingin sa paligid, proud):
+“Tama ka. Totoo nga na small actions can make a difference.”
+
+Alberto (nakangiti, sumang-ayon):
+“At kapag sama-sama, mas malaki ang impact.”
+
+jump good_ending
+
+# -------------------------
+# FACEBOOK PAGE PATH (BAD/NEUTRAL)
+# -------------------------
+label fb_page:
+
+scene Library with fade
+"Nag-stick sina Cindy at Alberto sa Facebook page."
+"Sa una, maraming estudyante ang natuwa pero makalipas ang ilang linggo nabawasan ang followers."
+"Dagdag pa, ang away na nangyari sa pagitan nila ni Karen at ang pag-report ni Karen sa kanilang page ay nagdulot ng pagbagal ng pagkalat nito."
+
+menu:
+    "Ano ang gagawin nila?"
+
+    "Ipagpatuloy kahit mahirap":
+        $ eco_meter -= 1
+        scene Library with fade
+        "Kahit kaunti lang ang nakaka-appreciate, patuloy pa rin sina Cindy at Alberto sa pagpo-post."
+        "Minsan isa o dalawang estudyante lang ang nagla-like o nagko-comment, pero hindi sila tumigil."
+        "Naging maliit na sulok sa internet ang kanilang pahina—may ilang loyal followers na sumusuporta, ngunit hindi ito naging sapat para makapagsimula ng mas malaking pagbabago."
+        "Nakaramdam sila ng kaunting fulfillment dahil kahit papaano ay may natututo, pero ramdam din nila ang limitadong epekto ng kanilang effort."
+        c "Bestie... siguro ganito na lang muna. Hindi man malaki ang epekto, pero at least may natutulungan pa rin." (Thoughtful)
+        a "Oo nga, beh. Hindi lahat ng laban malaki agad ang resulta." (Encourage)
+        jump near_ending
+
+    "Sumuko na lang":
+        $ eco_meter -= 2
+        scene Black with fade (?)
+        "Sa sobrang dami ng problema at kakulangan ng suporta, tuluyan na silang sumuko."
+        "Hindi na na-update ang page at tuluyang natigil ang advocacy."
+        jump bad_ending
+
+# -------------------------
+# NEUTRAL ENDING
+# -------------------------
+label near_ending:
+
+    scene Classroom with fade
+    "Pagkatapos ng ilang buwan, dumating ang araw ng evaluation."
+    "Tinawag sila ni Professor upang ipresenta ang kanilang nagawa."
+
+    p "Maganda ang effort ninyo, Cindy at Alberto. Kahit nahirapan kayo, hindi kayo sumuko." (Appreciative)
+    p "Pero sa totoo lang, kulang pa ang naging epekto ng inyong proyekto. Umabot man ito sa ilan, hindi ito naging sapat para makapagpabago ng malakihan. At darating ang araw na makakalimutan din ito ng lahat kaya mababalewala ang hirap at pagod nyo." (Serious)
+
+    scene Hallway with fade (???)
+    "Cindy at Alberto ay naglakad palabas ng silid, dala ang kunting saya at panghihinayang."
+    c "At least, may natulungan naman tayo kahit konti, bestie." (Faint smile)
+    a "Tama ka. Hindi man ito grand success, pero may naitanim tayong maliit na binhi ng pagbabago, na sana'y tumagal..." (Smile)
+
+    scene comfort with fade
+    "Habang naglalakad, napansin nila ang isang estudyanteng nakabasa ng kanilang post at nag-iwas ng paggamit ng plastik."
+    "Ngumiti sila, dahil kahit kaunti, may nagbago."
+    jump nuetral_ending
+
+
+# -------------------------
+# ENDINGS BASED ON ECO METER
+# -------------------------
+label ending:
+
+    if eco_meter >= 5:
+    "GOOD ENDING: Naging inspirasyon sila sa iba, naayos ang waste management sa campus, dumami ang sumali sa environmental activities, at mas inclusive ang komunidad."
+    elif eco_meter >= 1:
+    "Neutral Ending: Maliit man ang naging epekto, pero may kaunting binhi paring naitanim para sa pagbabago.”
+    else:
+    "BAD ENDING: Dahil pinanghinaan sila ng loob at walang suporta, tuluyang nasira ang kanilang project. Nanatiling madumi ang paligid at mas lumala ang problema."
     return
+
 
 
 
