@@ -32,13 +32,14 @@ style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
 
+style button hover_sound "audio/hover.mp3"
+style button activate_sound "audio/click.mp3"
 
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
 
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
-
 
 style bar:
     ysize gui.bar_size
@@ -225,6 +226,8 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    hover_sound "audio/hover.mp3"
+    activate_sound "audio/click.mp3"
 
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
@@ -401,6 +404,10 @@ style main_menu_title:
 
 style main_menu_version:
     properties gui.text_properties("version")
+
+style main_menu_button:
+    hover_sound "audio/hover.mp3"
+    activate_sound "audio/click.mp3"
 
 
 ## Game Menu screen ############################################################

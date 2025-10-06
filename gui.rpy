@@ -60,7 +60,7 @@ define gui.interface_text_color = '#404040'
 define gui.text_font = "DejaVuSans.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "DejaVuSans.ttf"
+define gui.name_text_font = "gui/pagkaki-regular.ttf"
 
 ## The font used for out-of-game text.
 define gui.interface_text_font = "DejaVuSans.ttf"
@@ -432,7 +432,7 @@ init python:
     def small():
 
         ## Font sizes.
-        gui.text_size = 45
+        gui.text_size = 54
         gui.name_text_size = 54
         gui.notify_text_size = 38
         gui.interface_text_size = 45
