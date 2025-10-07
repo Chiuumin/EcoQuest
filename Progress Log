@@ -5,3 +5,13 @@
 
 04/09/25 ---> Script Revamp -- coded the first few scenes.
          ---> Attached missing assets.
+
+//lowk forgot to update my github after midterms week mb gang
+
+07/10/25 ---> Revise some dialouges for a more cohesive and immersive playthrough
+         ---> Implement the 1st Drag and Drop minigame to the main game
+         ---> Update UI, particularly the Game Menu 
+         ---> Implement button SFX, once hovered and clicked
+         ---> Included PhoneTexting UI for a single scene
+         ---> Update Eco_meter scoring for a balanced experience
+         ---> Update ending flag logic for 3 endings
