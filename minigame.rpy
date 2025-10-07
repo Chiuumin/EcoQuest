@@ -83,12 +83,13 @@ label game_loop:
 
 label sortCheck:
     hide screen setDragImages # Hide the screen before showing the result.
-    image win = "win.png"
-    image lose = "lose.png"
 
     if correct ==5:
-        show win
+        show win with fade
+        play sound "audio/decision.mp3" 
         "You sorted all the trash correctly! You win!"
+
+        hide win
         jump continuation
     elif correct ==3:
         show win
@@ -101,6 +102,8 @@ label sortCheck:
 
 label continuation:
     "Nagpatuloy silang maglinis..."
+
+    scene medina_lacson with fade
 
     show a neutral
     a "Alam mo, parang ganito rin ang pagtingin ng iba patungkol sa gender..."

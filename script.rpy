@@ -115,11 +115,26 @@ image k provoked:
     0.5
     repeat
 
-#BG CONFIG
+#BG and CG CONFIG
 image sunflower:
     "images/Sunflower1.png"
     1.0
     "images/Sunflower2.png"
+    1.0
+    repeat
+
+image cg1:
+    "images/cg1.png"
+    1.0
+    "images/cg1o5.png"
+    0.5
+    repeat
+
+#MINIGAME RESULT CONFIG
+image win:
+    "images/win1.png"
+    1.0
+    "images/win2.png"
     1.0
     repeat
 
@@ -158,15 +173,15 @@ label start:
 
     show a neutral
 
-    "Ngunit unti-unti nilang napapansin ang pagbabago sa lugar."
+    "Ngunit nitong mga huling linggo, unti-unti nilang napapansin ang kakaibang pagbabago sa lugar."
 
     "Ramdam nila na umiinit ang simoy ng hangin, hindi na kasing-sariwa ng dati ang nalalanghap nilang hangin, at ang dating malulusog na mirasol ay nagsimulang malanta."
 
     c neutral "Ang init na ng panahon, hindi na talaga ito tulad ng dati…"
 
+    c curious "Dapat siguro makinig tayo nang mabuti kay sir. Baka may kinalaman dito 'yung climate change na sinasabi niya."
+
     hide a neutral
-
-
 
     jump classroom_scene
 
@@ -174,7 +189,9 @@ label classroom_scene:
     scene bacomm with fade
 
     show p slight smile
-    p "Okay class, ngayong araw ay tatalakayin natin ang tungkol sa klima at ang epekto ng climate change."
+    p "Okay class. Base sa mga napapansin ninyo, mas uminit ba talaga ang mundo?"
+
+    p "Ngayong araw, tatalakayin natin ang tungkol sa klima at ang epekto ng climate change, para maintindihan ninyo kung bakit nag-iiba na ang ating paligid."
 
     p "Una, ang pangunahing sanhi ng pag-init ng mundo o global warming ay ang patuloy na pagdami ng greenhouse gases gaya ng Carbon Dioxide (CO₂), Methane (CH₄), at Nitrous Oxide (N₂O)."
 
@@ -182,7 +199,7 @@ label classroom_scene:
 
     p "Dahil dito, naiipon ang init sa ating atmosphere at unti-unting tumataas ang temperatura ng mundo."
 
-    p "Cindy."
+    p "Cindy. Sa madaling salita, ano ang pinaka-sentro ng problema na nagpapainit sa ating planeta?"
 
     menu question:
         p "Ano ang pangunahing sanhi ng pag-init sa mundo?"
@@ -262,9 +279,14 @@ label classroom_scene:
 
     p "Kung hindi tayo kikilos ngayon, maipapamana natin ang problema sa susunod na henerasyon."
 
+    hide p slight smile
+
     "Ngayon ay mas naiintindihan na ni Cindy kung bakit iba na ang kanyang paligid at kung bakit tila ba mas umiinit ang panahon nitong mga nakaraan."
 
-    stop music
+    show a neutral
+    a "Grabe pala talaga. Naaalala ko 'yung mga basura sa labas ng Medina…"
+
+    stop music fadeout 1.5
 
     jump medina_scene
 
@@ -273,9 +295,9 @@ label medina_scene:
 
     play music "audio/Happy smile.mp3" loop fadein 2.5
 
-    "Pagkatapos ng klase, dumaan sina Cindy at Alberto sa tapat ng Medina, napansin nila ang umaapaw na basurahan"
+    "Pagkatapos ng klase, dumaan sina Cindy at Alberto sa tapat ng Medina. Agad nilang napansin ang umaapaw na basurahan at mga nagkalat na plastic wrapper sa damuhan."
 
-    c neutral "Parang wala nang pakialam ang ibang estudyante sa ating kapaligiran—ang daming basurang nagkalat"
+    c neutral "Hay, Bestie. Sabi na nga ba. Parang wala nang pakialam ang ibang estudyante sa ating kapaligiran—ang daming basurang nagkalat."
 
     menu:
         "Ano ang gagawin nila?"
@@ -308,13 +330,15 @@ label medina_scene:
 label library_scene:
 
     scene library with fade
-    "Sa vacant time nila, naisipan nina Cindy at Alberto na gumawa ng Facebook page muna habang pinaplano ang mas malaking website"
+    show cg1
+    "Dahil gusto nilang magsimula agad, naisipan nina Cindy at Alberto na gumawa ng isang **Facebook page** muna habang pinaplano ang mas malaking website."
     
-    "Dinisenyo ni Cindy ang layout at nag-upload ng content tungkol sa pagbabawas ng basura."
+    "Dinisenyo ni Cindy ang layout at nag-upload ng content tungkol sa pagbabawas ng basura at recycling tips."
     
-    "Nagdagdag naman si Alberto ng makukulay na graphics at mga quote"
+    "Nagdagdag naman si Alberto ng makukulay na graphics at mga quotes tungkol sa kalikasan, gamit ang kanyang creative eye."
 
-    stop music
+    hide cg1
+    stop music fadeout 1.0
 
     jump karen_conflict
 
@@ -324,7 +348,7 @@ label library_scene:
 label karen_conflict:
 
     scene bacomm with fade
-    "Kinabukasan, nakita ni Karen ang kanilang page, kaya pinaringgan nya ang dalawa."
+    "Kinabukasan, habang nasa klase sila, nakita ni Karen ang kanilang page sa kanyang cellphone. Agad siyang nagbigay ng sarkastikong komento."
 
     show k neutral
     k "Ang taas talaga ng pangarap ng dalawang 'to. Kunwari pang naglilinis, mga pasikat, bida-bida."
@@ -337,17 +361,18 @@ label karen_conflict:
         "Patulan si Karen":
             $ eco_meter -= 10
 
-            c angry "Ano bang problema mo sa ginagawa namin, ha?"
+            c angry "Ano bang problema mo sa ginagawa namin, ha? Kung wala kang planong tumulong, 'wag kang manggulo!"
 
-            a "Kung wala kang maaambag dito, wag mong sirain ang ginagawa namin."
+            a "Kung wala kang maaambag dito, wag mong sirain ang ginagawa namin. Sa 'yo na yang negativity mo!"
 
-            "Nag-walkout si Karen nang padabog, at nagkalat sa campus ang kanilang away."
+            "Nag-walk out si Karen nang padabog. Kumalat sa campus ang kanilang away. Ang pagtuon ng atensyon ay nalipat mula sa adbokasiya patungo sa away-personal."
+
             jump house_scene
 
         "Hayaan na lang at mag-focus":
             $eco_meter -= 10
 
-            a happy "Hayaan mo na, beh. Dadami rin tayo at may pagbabago ring mangyayari."
+            a happy "Hayaan mo na, beh. Wag tayong magpababa sa level niya. Focus tayo sa goal natin."
 
             c neutral "Oo nga. Hindi dapat tayo paapekto sa sinabi nya, at lalong hindi tayo pwede panghinaan ng loob"
             jump house_scene
@@ -355,7 +380,7 @@ label karen_conflict:
 label house_scene:
     show store with fade  
     
-    "Kinagabihan, nag-text si Cindy kay Alberto."
+    "Kinagabihan, nag-text si Cindy kay Alberto. Ang kanilang simpleng Facebook page ay naging insentibo para mas pagbutihin ang kanilang advocacy."
      
     nvl_narrator "16:28"
     c_nvl "Bes, dahil CS students tayo, puwede tayong gumawa ng website gamit ang coding skills natin."   
@@ -366,7 +391,11 @@ label house_scene:
         "Coding Challenge!"
         "Ipagpatuloy kahit mahirap":
             $ eco_meter += 20
-            "Nagpatuloy sila kahit maraming errors ang lumalabas, hangga't sa natapos din ang website."
+
+            "Gabi-gabi, nagpuyat sina Cindy at Alberto."
+            
+            "Naglabasan ang maraming errors, bugs, at frustration, pero hindi sila sumuko hangga't sa natapos din ang website—isang komprehensibong hub para sa environmental awareness."
+
             jump faculty_scene
         
         "Sumuko at stick na lang sa FB":
@@ -385,7 +414,7 @@ label faculty_scene:
     "Pagkaraan ng ilang linggo, inilusad nila ang website at pinakita ito sa kanilang propesor."
 
     show p slight smile2
-    "Uy, ang ganda nito ah! Hindi lang informative, malinaw pa yung pagkaka-explain ninyo."
+    p "Uy, ang ganda nito ah! Hindi lang informative, malinaw pa yung pagkaka-explain ninyo."
 
     c happy "Salamat po, Sir! Ang saya kasi parang worth it lahat ng puyat at kape."
 
@@ -416,9 +445,11 @@ label student_council:
 
     scene Council with fade
 
+    "Sa wakas, nakarating sina Cindy at Alberto sa ENSO Office. Laking gulat nila nang makita si Karen."
+
     show k smirk
-    "Oh, Cindy, Alberto! Ano namang ginagawa niyo rito?" 
-    c curious "Nandito kami para mag-present sa student council ng website na ginawa namin." 
+    k "Oh, Cindy, Alberto! Ano namang ginagawa niyo rito?" 
+    c curious "Nandito kami para mag-present sa ENSO ng website na ginawa namin." 
 
     show k provoked
     menu:
@@ -451,11 +482,13 @@ label student_council:
 
     
     show k smirk
-    k "Alam niyo… nahihiya ako sa mga sinabi ko dati, gusto ko humingi ng sorry. At bilang pambawi nais ko ring tumulong sainyo."
+    k "Alam niyo… nahihiya ako sa mga sinabi ko dati. Tama kayo. Mukhang mas malaki ang impact ng ginagawa niyo kaysa sa pag-aaway namin dati. Gusto ko humingi ng sorry."
 
-    c happy "Walang problema, Karen. Ang mahalaga, ngayon nagbago yung pananaw mo. Mas magiging malakas tayo kung sama-sama." 
+    c happy "Walang problema, Karen. Ang mahalaga, ngayon nagbago yung pananaw mo. Mas magiging malakas tayo kung sama-sama at iisang boses tayo." 
 
-    a happy "Salamat, Karen. Ibig sabihin, hindi lang ito advocacy namin ni Alberto kundi para ito sa lahat." 
+    a happy "Salamat, Karen. At bilang pambawi, gusto mo bang tumulong sa amin? Ibig sabihin, hindi lang ito advocacy namin ni Cindy kundi para ito sa lahat."
+
+    k "Gusto ko. Bilang parte ng Council, itutulak ko ang website niyo para maging official platform ng campus para sa environmental awareness." 
 
     jump advocacyEvent_scene
 
@@ -464,6 +497,8 @@ label student_council:
 # ADVOCACY EVENT
 # -------------------------
 label advocacyEvent_scene:
+
+    "Dahil sa tulong ni Karen, ginawang official platform ng Student Council ang website nina Cindy at Alberto. Naglunsad sila ng campus-wide advocacy event."
 
     show k smirk
     show a happy
