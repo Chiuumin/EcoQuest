@@ -29,7 +29,7 @@ init python:
         if store.draggable == "bottle":
             store.bottle_hide = True
         elif store.draggable == "bottle1":
-            store.bottle_hide = True
+            store.bottle1_hide = True
         elif store.draggable == "paper":
             store.paper_hide = True
         elif store.draggable == "paper1":

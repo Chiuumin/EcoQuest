@@ -1,4 +1,4 @@
-﻿################################################################################
+﻿ ################################################################################
 ## Initialization
 ################################################################################
 
@@ -50,8 +50,8 @@ define gui.muted_color = '#84a366'
 define gui.hover_muted_color = '#adc199'
 
 ## The colors used for dialogue and menu choice text.
-define gui.text_color = '#404040'
-define gui.interface_text_color = '#404040'
+define gui.text_color = '#322e2e'
+define gui.interface_text_color = '#1d1a1a'
 
 
 ## Fonts and Font Sizes ########################################################
@@ -211,8 +211,8 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#707070'
-define gui.choice_button_text_hover_color = "#ffffff"
+define gui.choice_button_text_idle_color = '#ffffff'
+define gui.choice_button_text_hover_color = "#070707"
 define gui.choice_button_text_insensitive_color = '#7070707f'
 
 
@@ -348,14 +348,14 @@ define gui.history_spacing = 0
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.history_name_xpos = 233
+define gui.history_name_xpos = 220
 define gui.history_name_ypos = 0
 define gui.history_name_width = 233
 define gui.history_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.history_text_xpos = 200
-define gui.history_text_ypos = 6
+define gui.history_text_xpos = 255
+define gui.history_text_ypos = 3
 define gui.history_text_width = 1110
 define gui.history_text_xalign = 0.0
 
